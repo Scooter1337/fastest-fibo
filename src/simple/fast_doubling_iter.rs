@@ -1,49 +1,60 @@
 use rug::{Complete, Integer};
 use std::time::{Duration, Instant};
 
-// Iterative fast doubling avoids recursion by scanning bits of n from MSB to LSB.
+/// Compute F(n), skipping the unused companion value on the final index bit.
 pub fn fib(n: usize) -> (Integer, Duration) {
-    if n == 0 {
-        return (Integer::from(0), Duration::from_nanos(0));
-    }
     if n < 3 {
-        return (Integer::from(1), Duration::from_nanos(0));
+        return (Integer::from(u8::from(n != 0)), Duration::ZERO);
     }
-
     let start = Instant::now();
-
-    // Determine highest set bit (excluding leading zeros)
-    let msb_index = usize::BITS as usize - (n.leading_zeros() as usize) - 1; // 0-based index
-
-    // (a, b) will hold (F(k), F(k+1)) while processing
-    let mut a = Integer::from(0); // F(0)
-    let mut b = Integer::from(1); // F(1)
-
-    // Process bits from msb_index down to 0
-    for i in (0..=msb_index).rev() {
-        // Loop invariant: currently have F(k)=a, F(k+1)=b for some k (starting with k=1?)
-        // Doubling step: compute F(2k) and F(2k+1)
-        // Using formulas with current a=F(k), b=F(k+1)
-        let mut two_b_minus_a = b.clone();
-        two_b_minus_a <<= 1; // 2*F(k+1)
-        two_b_minus_a -= &a; // 2*F(k+1) - F(k)
-        let c: Integer = (&a * &two_b_minus_a).complete(); // F(2k)
-        let a_sq: Integer = (&a * &a).complete();
-        let b_sq: Integer = (&b * &b).complete();
-        let d: Integer = a_sq + b_sq; // F(2k+1)
-
-        // Decide next based on bit i of n
-        if (n >> i) & 1 == 0 {
-            // even path: (F(2k), F(2k+1))
-            a = c; // F(2k)
-            b = d; // F(2k+1)
+    let highest_bit = usize::BITS - n.leading_zeros() - 1;
+    // The leading set bit is already represented by (F(1), F(2)).
+    let mut a = Integer::from(1);
+    let mut b = Integer::from(1);
+    for bit in (1..highest_bit).rev() {
+        let mut difference = b.clone();
+        difference <<= 1;
+        difference -= &a;
+        let c = (&a * &difference).complete();
+        let mut d = a.square_ref().complete();
+        d += b.square_ref();
+        (a, b) = if (n >> bit) & 1 == 0 {
+            (c, d)
         } else {
-            // odd path: (F(2k+1), F(2k)+F(2k+1)) = (d, c+d)
-            a = d.clone();
-            b = c + d;
+            let next = (&c + &d).complete();
+            (d, next)
+        };
+    }
+    let result = if n & 1 == 0 {
+        b <<= 1;
+        b -= &a;
+        a * b
+    } else {
+        a.square_mut();
+        a += b.square_ref();
+        a
+    };
+    (result, start.elapsed())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn exact_values_across_index_bit_boundaries() {
+        let (mut a, mut b) = (Integer::from(0), Integer::from(1));
+        for n in 0..=4097 {
+            assert_eq!(fib(n).0, a, "F({n})");
+            let next = (&a + &b).complete();
+            (a, b) = (b, next);
         }
     }
 
-    let elapsed = start.elapsed();
-    (a, elapsed) // a = F(n)
+    #[test]
+    fn large_even_and_odd_indices_match_recursive_doubling() {
+        for n in [99_999, 100_000, 1_000_000, 1_000_001] {
+            assert_eq!(fib(n).0, crate::simple::fast_doubling::fib(n).0, "F({n})");
+        }
+    }
 }

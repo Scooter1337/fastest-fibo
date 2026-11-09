@@ -1,2 +1,5 @@
 /target
 .DS_Store
+/.qa
+/vite-project/node_modules
+/vite-project/dist

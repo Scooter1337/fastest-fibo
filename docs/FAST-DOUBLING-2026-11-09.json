@@ -1,0 +1,424 @@
+{
+  "date": "2026-11-09",
+  "baselineCommit": "7263d3c966653b05647ffdf459f3191f41d63f5b",
+  "cpu": "Apple M1 Pro",
+  "architecture": "arm64",
+  "rust": "rustc 1.95.0-nightly (1ed488274 2026-02-25)",
+  "native": {
+    "scope": "Original iterative method12 versus optimized method12; same rug/GMP backend, releaseoptimization; excludes decimal serialization and I/O",
+    "warmup": 3,
+    "samples": 11,
+    "sampleOrder": "alternating original/optimized",
+    "rows": [
+      {
+        "n": 1000,
+        "originalMedianMs": 0.002667,
+        "optimizedMedianMs": 0.002083,
+        "speedup": 1.2803648583773404,
+        "originalSamplesNs": [
+          2750,
+          12291,
+          3584,
+          2708,
+          2709,
+          2667,
+          2667,
+          2375,
+          2500,
+          2333,
+          2459
+        ],
+        "optimizedSamplesNs": [
+          4250,
+          3250,
+          2625,
+          3125,
+          1917,
+          2291,
+          1916,
+          2083,
+          1875,
+          2042,
+          1875
+        ],
+        "valuesEqual": true
+      },
+      {
+        "n": 100000,
+        "originalMedianMs": 0.321833,
+        "optimizedMedianMs": 0.206292,
+        "speedup": 1.5600847342601747,
+        "originalSamplesNs": [
+          185083,
+          216000,
+          1128042,
+          318792,
+          1459167,
+          331667,
+          321833,
+          277833,
+          340792,
+          346334,
+          271334
+        ],
+        "optimizedSamplesNs": [
+          116125,
+          116833,
+          217167,
+          206292,
+          2000000,
+          246125,
+          188250,
+          233167,
+          295583,
+          195125,
+          169083
+        ],
+        "valuesEqual": true
+      },
+      {
+        "n": 100001,
+        "originalMedianMs": 0.234042,
+        "optimizedMedianMs": 0.174875,
+        "speedup": 1.3383388134381702,
+        "originalSamplesNs": [
+          278250,
+          235792,
+          234042,
+          232917,
+          234292,
+          233083,
+          233791,
+          252750,
+          239333,
+          234000,
+          234000
+        ],
+        "optimizedSamplesNs": [
+          177875,
+          176291,
+          172459,
+          172792,
+          172750,
+          172583,
+          175833,
+          208666,
+          176208,
+          174875,
+          172667
+        ],
+        "valuesEqual": true
+      },
+      {
+        "n": 1000000,
+        "originalMedianMs": 3.052709,
+        "optimizedMedianMs": 1.912625,
+        "speedup": 1.5960833932422718,
+        "originalSamplesNs": [
+          3268291,
+          3145542,
+          3269792,
+          2813542,
+          3091833,
+          3127834,
+          3052709,
+          2532542,
+          2602750,
+          2640208,
+          2560417
+        ],
+        "optimizedSamplesNs": [
+          2119291,
+          2293333,
+          2011959,
+          1936875,
+          1856333,
+          1840500,
+          3311542,
+          1792500,
+          1912625,
+          1808917,
+          1748083
+        ],
+        "valuesEqual": true
+      },
+      {
+        "n": 1000001,
+        "originalMedianMs": 2.560834,
+        "optimizedMedianMs": 1.997375,
+        "speedup": 1.2820997559296576,
+        "originalSamplesNs": [
+          2560834,
+          2525417,
+          2585542,
+          2946458,
+          2623750,
+          2531958,
+          2518708,
+          2569542,
+          2623583,
+          2554833,
+          2536333
+        ],
+        "optimizedSamplesNs": [
+          2075167,
+          1972458,
+          1966750,
+          1916333,
+          2031792,
+          1997375,
+          1999250,
+          2046833,
+          1932708,
+          1937667,
+          2275916
+        ],
+        "valuesEqual": true
+      },
+      {
+        "n": 10000000,
+        "originalMedianMs": 39.167334,
+        "optimizedMedianMs": 26.625833,
+        "speedup": 1.4710275543304128,
+        "originalSamplesNs": [
+          43221000,
+          37666875,
+          39038208,
+          40600000,
+          39712167,
+          39129959,
+          39167334,
+          39725709,
+          43024625,
+          38758209,
+          37825458
+        ],
+        "optimizedSamplesNs": [
+          25773500,
+          26781542,
+          25967541,
+          25973042,
+          41995208,
+          26643709,
+          34709209,
+          27223375,
+          26174375,
+          26376834,
+          26625833
+        ],
+        "valuesEqual": true
+      },
+      {
+        "n": 10000001,
+        "originalMedianMs": 38.584083,
+        "optimizedMedianMs": 29.1795,
+        "speedup": 1.3223010332596514,
+        "originalSamplesNs": [
+          38692000,
+          39190375,
+          38899958,
+          38584083,
+          38524458,
+          38184000,
+          39366917,
+          39883208,
+          38483584,
+          37917792,
+          38035709
+        ],
+        "optimizedSamplesNs": [
+          29639625,
+          29102666,
+          29878792,
+          28967458,
+          29197667,
+          28787708,
+          29179500,
+          28912542,
+          30059000,
+          29213042,
+          28660833
+        ],
+        "valuesEqual": true
+      }
+    ]
+  },
+  "javascript": {
+    "runtime": "v24.13.0",
+    "scope": "Node V8, original BN matrix versus BigInt fast doubling; arithmetic and decimal conversion separated",
+    "warmup": 3,
+    "samples": 7,
+    "rows": [
+      {
+        "n": 1000,
+        "engine": "bn-matrix",
+        "computeMedianMs": 0.04612499999999642,
+        "decimalMedianMs": 0.0730000000000004,
+        "computeSamples": [
+          0.21454099999999698,
+          0.05591700000000088,
+          0.04612499999999642,
+          0.030083000000004745,
+          0.05208300000000321,
+          0.03012499999999818,
+          0.028874999999999318
+        ],
+        "decimalSamples": [
+          0.20520799999999895,
+          0.08166700000000304,
+          0.41320800000000446,
+          0.0730000000000004,
+          0.04591699999999577,
+          0.0437909999999988,
+          0.04904200000000003
+        ],
+        "decimalScope": "measured"
+      },
+      {
+        "n": 1000,
+        "engine": "bigint-fast-doubling",
+        "computeMedianMs": 0.0025000000000048317,
+        "decimalMedianMs": 0.0012090000000029022,
+        "computeSamples": [
+          0.0026249999999947704,
+          0.0025839999999988095,
+          0.0025000000000048317,
+          0.0024579999999971847,
+          0.0025410000000007926,
+          0.0024170000000012237,
+          0.0024999999999977263
+        ],
+        "decimalSamples": [
+          0.0018750000000054001,
+          0.0012499999999988631,
+          0.0012079999999983215,
+          0.0012499999999988631,
+          0.0012089999999957968,
+          0.0011670000000023606,
+          0.0012090000000029022
+        ],
+        "decimalScope": "measured"
+      },
+      {
+        "n": 100000,
+        "engine": "bn-matrix",
+        "computeMedianMs": 20.702167000000145,
+        "decimalMedianMs": 394.941625,
+        "computeSamples": [
+          21.366249999999994,
+          21.793708000000038,
+          23.44983400000001,
+          20.702167000000145,
+          20.579999999999927,
+          20.679167000000234,
+          20.425374999999804
+        ],
+        "decimalSamples": [
+          394.941625,
+          410.8845,
+          392.77487499999995,
+          397.9981660000001,
+          394.153959,
+          399.12275,
+          394.09675000000016
+        ],
+        "decimalScope": "measured"
+      },
+      {
+        "n": 100000,
+        "engine": "bigint-fast-doubling",
+        "computeMedianMs": 0.20416599999998652,
+        "decimalMedianMs": 0.9018340000002354,
+        "computeSamples": [
+          0.20416599999998652,
+          0.21937499999967258,
+          0.20445900000004258,
+          0.21512499999971624,
+          0.2029160000001866,
+          0.2021669999999176,
+          0.20345799999995506
+        ],
+        "decimalSamples": [
+          1.0954999999999018,
+          0.9018340000002354,
+          0.8980830000000424,
+          0.9021250000000691,
+          0.8980410000003758,
+          0.8979580000000169,
+          0.9105829999998605
+        ],
+        "decimalScope": "measured"
+      },
+      {
+        "n": 1000000,
+        "engine": "bn-matrix",
+        "computeMedianMs": 2199.1222910000015,
+        "decimalMedianMs": null,
+        "computeSamples": [
+          2199.1222910000015,
+          2187.1023749999986,
+          2197.9447499999987,
+          2281.119166999997,
+          2711.4871249999997,
+          2265.410541999998,
+          2193.0031660000022
+        ],
+        "decimalSamples": [],
+        "decimalScope": "BN decimal conversion above n=100000 omitted; no extrapolation"
+      },
+      {
+        "n": 1000000,
+        "engine": "bigint-fast-doubling",
+        "computeMedianMs": 4.64520800000173,
+        "decimalMedianMs": 22.35908399999971,
+        "computeSamples": [
+          4.75945800000045,
+          4.606915999997,
+          4.986250000001746,
+          4.6322499999987485,
+          4.665084000000206,
+          4.64520800000173,
+          4.501165999998193
+        ],
+        "decimalSamples": [
+          23.465540999997756,
+          22.22345800000039,
+          22.15599999999904,
+          22.497792000001937,
+          22.101125000001048,
+          22.35908399999971,
+          23.2992090000007
+        ],
+        "decimalScope": "measured"
+      }
+    ]
+  },
+  "browserUI": {
+    "passed": true,
+    "checks": [
+      "decimal F(100) exact",
+      "hex output exact",
+      "fractional input fails without truncation or stale download",
+      "F(1M) worker output: bounded preview and full 208988-digit download",
+      "large job can be cancelled without blocking the page"
+    ],
+    "errors": []
+  },
+  "verification": {
+    "rustRiskTests": 2,
+    "javascriptRiskTests": 2,
+    "releaseCLI": "built --locked --features cli; F(100) exact",
+    "browserBuild": true,
+    "existingBNAPIUnchanged": true,
+    "preexistingLocalClapOptionalFixRetained": true
+  },
+  "harnesses": {
+    "native": "#[path = \"original-fast-doubling.rs\"]\nmod original;\nuse fastest_fibo::simple::fast_doubling_iter::fib as optimized;\nuse std::hint::black_box;\nfn main() {\n    println!(\"n,engine,sample,compute_ns\");\n    for n in [1000, 100_000, 100_001, 1_000_000, 1_000_001, 10_000_000, 10_000_001] {\n        assert_eq!(original::fib(n).0, optimized(n).0);\n        for _ in 0..3 { black_box(original::fib(n)); black_box(optimized(n)); }\n        for sample in 0..11 {\n            let (before, after) = if sample % 2 == 0 {\n                let before = black_box(original::fib(n)).1;\n                let after = black_box(optimized(n)).1;\n                (before, after)\n            } else {\n                let after = black_box(optimized(n)).1;\n                let before = black_box(original::fib(n)).1;\n                (before, after)\n            };\n            println!(\"{n},original,{sample},{}\", before.as_nanos());\n            println!(\"{n},optimized,{sample},{}\", after.as_nanos());\n        }\n    }\n}\n",
+    "javascript": "import {fib,fibBigInt} from '../vite-project/src/fibonacci.js';\nimport {writeFile} from 'node:fs/promises';\nimport assert from 'node:assert/strict';\nconst rows=[];const median=a=>[...a].sort((x,y)=>x-y)[Math.floor(a.length/2)];\nfor(const n of [1000,100000,1000000]){\n const reference=fib(n).value.toString(16);assert.equal(fibBigInt(n).value.toString(16),reference);\n for(const [engine,fn] of [['bn-matrix',fib],['bigint-fast-doubling',fibBigInt]]){\n  for(let i=0;i<3;i++)fn(n);const compute=[],serialize=[];\n  for(let i=0;i<7;i++){const{value,duration}=fn(n);compute.push(duration);if(n<=100000||engine==='bigint-fast-doubling'){const start=performance.now();value.toString(10);serialize.push(performance.now()-start)}}\n  rows.push({n,engine,computeMedianMs:median(compute),decimalMedianMs:serialize.length?median(serialize):null,computeSamples:compute,decimalSamples:serialize,decimalScope:serialize.length?'measured':'BN decimal conversion above n=100000 omitted; no extrapolation'});console.log(n,engine,median(compute),median(serialize));\n }\n}\nawait writeFile('.qa/browser-benchmark.json',JSON.stringify({runtime:process.version,scope:'Node V8, original BN matrix versus BigInt fast doubling; arithmetic and decimal conversion separated',warmup:3,samples:7,rows},null,2)+'\\n');\n"
+  },
+  "sourceHashes": {
+    "src/simple/fast_doubling_iter.rs": "ccc5a4f49f3f92b4807fef95fb0c8b5e6078ed151485c0d35b829ae64eb1de21",
+    "vite-project/src/fibonacci-bigint.js": "eb9509e591254990335a65cb1c9fd3d572cbfc6f23b6d55a61ba5c4a900e08ec",
+    "vite-project/src/fibonacci.worker.js": "261cfee77370c137b2e1979a1d3772a98dc44c2ce9b66d0db06861628d5af0da"
+  }
+}

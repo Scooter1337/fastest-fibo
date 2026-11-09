@@ -5,7 +5,7 @@ edition = "2021"
 
 [dependencies]
 wasm-bindgen = "0.2"
-clap = { version = "4.5.45", features = ["derive"] }
+clap = { version = "4.5.45", features = ["derive"], optional = true }
 rayon = "1.11.0"
 
 [dependencies.rug]
@@ -25,7 +25,6 @@ panic = "abort"
 overflow-checks = false
 codegen-units = 1
 debug = false
-optimize = true
 
 [features]
 # Define a feature, e.g., "cli", that enables the clap dependency.

@@ -3,10 +3,7 @@
 use std::io::Write;
 
 use clap::Parser;
-mod approx;
-mod rayon;
-mod simple;
-mod threads;
+use fastest_fibo::{approx, rayon, simple, threads};
 
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]

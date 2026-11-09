@@ -106,3 +106,5 @@ function mult(a, b) {
 
     return [c0, c1, c2, c3];
 }
+
+export { fibBigInt } from './fibonacci-bigint.js';
